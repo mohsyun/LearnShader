@@ -2,6 +2,7 @@
 {
     Properties {
        // _MainCol    ("Main Color : 主颜色", Color)                          =(1.0,1.0,1.0,1.0)
+        [Header (Texture)][Space(5)]
         _MainTex       ("RGB : 基础颜色 A:环境遮罩", 2d)                          = "white"{}
         _MaskTex       ("R : 高光强度 G: 边缘光强度 B: 高光染色 A:高光次幂", 2d)    = "black"{}
         _NormalTex     ("RGB : 法线贴图 ", 2d)				                     = "bump"{}
@@ -10,6 +11,33 @@
         _DiddWarpMask  ("颜色Warp图", 2d)                                        = "gray"{}
         _FresWarpMask  ("菲涅尔Warp图", 2d)                                      = "gray"{}
         _Cubemap       ("环境球", cube)                                          = "_Skybox"{}
+        [Space(20)]
+       
+        [Header (DirDiff)][Space(5)]
+        _LightCol      ("光颜色",color)                                          =(1.0,1.0,1.0,1.0)                     
+        _SpecPow       ("高光次幂",range(0.0,90.0))                              =40.0                   
+        _SpecInt       ("高光强度",range(0.0,10.0))                              =5.0                       
+        [Space(20)]
+       
+        [Header (EnvDiff)][Space(5)]
+        _EnvUpCol      ("环境光颜色",color)                                      =(1.0,1.0,1.0,1.0)
+        _EnvDiffInt    ("环境漫反射强度",range(0.0,5.0))                          =0.5
+        _EnvSpecInt    ("环境镜面反射强度",range(0.0,30.0))                       =10.0 
+        [Space(20)]
+       
+        [Header (RimLight)][Space(5)]
+        _RimCol        ("轮廓光颜色",color)                                      =(1.0,1.0,1.0,1.0)
+        _RimInt        ("轮廓光强度",range(0.0,3.0))                             =1.0                      
+        [Space(20)]
+       
+        [Header (EmitLight)][Space(5)]
+        _EmitInt       ("自发光强度",range(0.0,10.0))                            =1.0                      
+
+        [HideInInspector]
+        _Cutoff        ("Alpha cutoff",range(0.0,1.0))                          =0.5           
+        
+        [HideInInspector]
+        _Color         ("Main Color",color)                                     =(1.0,1.0,1.0,1.0)
     }
     SubShader {
         Tags {
@@ -41,7 +69,19 @@
             uniform sampler2D     _FresWarpMask  ;
             uniform samplerCUBE   _Cubemap       ;
 
-           //输入结构
+            uniform half3         _LightCol      ;
+            uniform half          _SpecPow       ;
+            uniform half          _SpecInt       ;
+            uniform half3         _EnvUpCol      ;   
+            uniform half          _EnvDiffInt    ;
+            uniform half          _EnvSpecInt    ;   
+            uniform half3         _RimCol        ;
+            uniform half          _RimInt        ;
+            uniform half          _EmitInt       ;
+
+            uniform half          _Cutoff       ;
+
+            //输入结构
             struct VertexInput {
                 float4 vertex   : POSITION;
                 float2 uv0      : TEXCOORD0;
@@ -101,10 +141,10 @@
                 //纹理采样
                 half4 var_MainTex = tex2D(_MainTex,i.uv0);
                 half4 var_MaskTex = tex2D(_MaskTex,i.uv0);
-                half  var_MatelnessMask = tex2D(_MatelnessMask,i.uv0);
-                half  var_EmissionMask = tex2D(_EmissionMask,i.uv0);
+                half  var_MatelnessMask = tex2D(_MatelnessMask,i.uv0).r;
+                half  var_EmissionMask = tex2D(_EmissionMask,i.uv0).r;
                 //float3 var_EmitTex = tex2D(_MainTex,i.uv0).rgb;
-                half3 var_FresWarpMask = tex2D(_FresWarpMask,ndotv);
+                half3 var_FresWarpMask = tex2D(_FresWarpMask,ndotv).rgb;
                 half3 var_Cubemap = texCUBElod(_Cubemap,  float4(vrDirWS, lerp(8.0 , 0.0, var_MaskTex.a ))).rgb;
 
                 //提取信息
@@ -123,51 +163,51 @@
                 half fresnelCol = fresnel.r;
                 half fresnelRim = fresnel.g;
                 half fresnelSpec = fresnel.b;
-                //光照模型准备
-                    //光源漫反射
-                    half3 diffCol = lerp(baseCol,half3(0.0,0.0,0.0),matellic);
-                    //光源镜面反射
-                    half3 specCol = lerp(baseCol,half3(0.3,0.3,0.3),specTint) * specInt;
-                    
 
-                    //光源反射混合
-                    //float shadow = LIGHT_ATTENUATION(i);
-                    //float3 dirLighting = (baseCol * lambert + specCol*phong)*_LightColor0 * shadow;
+                //光照模型准备
+                    //光源漫反射颜色
+                    half3 diffCol = lerp(baseCol,half3(0.0,0.0,0.0),matellic);
+                    //光源镜面反射颜色
+                    half3 specCol = lerp(baseCol,half3(0.3,0.3,0.3),specTint) * specInt;
+                    //光源漫反射
+                    half halfLambert = ndotl * 0.5 + 0.5;
+                    half3 var_DiffWarpTex = tex2D(_DiddWarpMask,half2(halfLambert,0.1));
+                    half3 dirDiff = diffCol * var_DiffWarpTex * _LightCol;
+                    //光源镜面反射
+                    half phong = pow(max(0.0,vdotr),specPow * _SpecPow);
+                    half spec = phong * max(0.0,ndotl);
+                    spec = max(spec, fresnelSpec);
+                    spec = spec * _SpecInt;
+                    half3 dirSpec = specCol * spec * _LightCol;
 
                     //环境漫反射
-                    //float upMask = max(0.0,nDirWS.g);
-                    //float downMask = max(0.0,-nDirWS.g);
-                    //float sideMask = 1.0 - upMask - downMask;
-                    //float3 envCol = _EnvUpCol * upMask + _EnvDownCol * downMask + _EnvSideCol * sideMask;
+                    half3 evnDiff = diffCol * _EnvUpCol * _EnvDiffInt;
 
-					//float3 envCol = TriColAmbient(nDirWS,_EnvUpCol,_EnvSideCol,_EnvDownCol); 
-
-                    //float3 envDiff = baseCol * envCol * _EnvSpecInt;
                     //环境镜面反射
-                    //float fresnel = pow (max ( 0.0 , 1.0 - vdotn) , _FresnelPow);
-                 
-					//float3 envSpec = var_Cubemap.rgb * fresnel * _EnvSpecInt;
+                    half reflectInt = max(fresnelSpec,matellic) * specInt;
+                    half3 evnSpec = specCol * reflectInt * envCube * _EnvSpecInt;
 
-                    //环境反射混合
-                    //float occlusion = var_MainTex.a;
-                    //float3 envLighting = (envDiff + envSpec) * occlusion;
+                    //轮廓光
+                    half3 rimLight = _RimCol * fresnelRim * rimInt * max(0.0,nDirWS.g) * _RimInt;
 
                     //自发光
-                    //float3 emission = var_EmitTex * _EmitInt;
+                    half3 emission = diffCol * emitInt * _EmitInt;
+
+
+
                 //综合混合
+                half3 finalRGB = (dirDiff + dirSpec) * shadow + evnDiff + evnSpec + rimLight + emission;
+                clip(opacity - _Cutoff);
 
-
-
-                float3 emissive = float3(0,1,0);
-                float3 finalColor = emissive;
-                float4 finalRGBA = float4(baseCol,1);
-              
+                float4 finalRGBA = float4(finalRGB,1);
+                
+                //透明剪切
                 return finalRGBA;
             }
             ENDCG
         }
     }
 
-    FallBack "Diffuse"
+    FallBack "Legacy Shaders/Transparent/Cutout/VertexLit"
    
 }

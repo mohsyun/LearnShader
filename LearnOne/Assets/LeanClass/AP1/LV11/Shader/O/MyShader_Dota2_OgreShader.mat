@@ -20,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Cubemap:
-        m_Texture: {fileID: 8900000, guid: c721714360afc6f4bb5a2488c29e6c6f, type: 3}
+        m_Texture: {fileID: 8900000, guid: bcffc8ef789f99d418fd4f3ea5968192, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DiddWarpMask:
-        m_Texture: {fileID: 2800000, guid: f8ab6a3e04f512a44963562d65003071, type: 3}
+        m_Texture: {fileID: 2800000, guid: adad7ba118f005f4c9b801be4625af67, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMask:
@@ -51,6 +51,16 @@ Material:
         m_Texture: {fileID: 2800000, guid: c530609a0af6b5942adc5cb1033b8538, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    m_Floats:
+    - _EimtInt: 1
+    - _EmitInt: 3.5
+    - _EnvDiffInt: 0.5
+    - _EnvSpecInt: 11
+    - _RimInt: 2
+    - _SpecInt: 5
+    - _SpecPow: 5
     m_Colors:
+    - _EnvUpCol: {r: 1, g: 1, b: 1, a: 1}
+    - _LightCol: {r: 1, g: 1, b: 1, a: 1}
     - _MainCol: {r: 1, g: 1, b: 1, a: 1}
+    - _RimCol: {r: 1, g: 1, b: 1, a: 1}

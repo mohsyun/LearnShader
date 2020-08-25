@@ -24,7 +24,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Cubemap:
-        m_Texture: {fileID: 8900000, guid: 64ca0dbb721dba649971ec8a7da623e4, type: 3}
+        m_Texture: {fileID: 8900000, guid: d5ec64852c2b2c045a84ba804cd65722, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DiddWarpMask:
-        m_Texture: {fileID: 2800000, guid: f8ab6a3e04f512a44963562d65003071, type: 3}
+        m_Texture: {fileID: 2800000, guid: adad7ba118f005f4c9b801be4625af67, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -60,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
-        m_Texture: {fileID: 2800000, guid: b6d5d07c0b2f26f429b6dfdf2b9d597c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 93bd31fefacf8cd4e9ed7cda5fad557d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatelnessMask:
@@ -72,7 +72,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTex:
-        m_Texture: {fileID: 2800000, guid: 8807f825b2419e54fb4a2035b9a4f114, type: 3}
+        m_Texture: {fileID: 2800000, guid: b6d5d07c0b2f26f429b6dfdf2b9d597c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -88,6 +88,10 @@ Material:
     - _Cutoff: 0.474
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EimtInt: 1
+    - _EmitInt: 3.5
+    - _EnvDiffInt: 0.5
+    - _EnvSpecInt: 11
     - _GlossMapScale: 0.74
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -95,7 +99,10 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _RimInt: 2
     - _SmoothnessTextureChannel: 0
+    - _SpecInt: 5
+    - _SpecPow: 5
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
@@ -103,3 +110,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EnvUpCol: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
+    - _LightCol: {r: 1, g: 1, b: 1, a: 1}
+    - _RimCol: {r: 1, g: 1, b: 1, a: 1}

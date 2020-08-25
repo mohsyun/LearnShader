@@ -51,5 +51,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _EimtInt: 1
+    - _EmitInt: 3.5
+    - _EnvDiffInt: 0.5
+    - _EnvSpecInt: 11
+    - _RimInt: 2
+    - _SpecInt: 5
+    - _SpecPow: 40
+    m_Colors:
+    - _EnvUpCol: {r: 1, g: 1, b: 1, a: 1}
+    - _LightCol: {r: 1, g: 1, b: 1, a: 1}
+    - _RimCol: {r: 1, g: 1, b: 1, a: 1}

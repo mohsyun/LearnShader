@@ -174,7 +174,7 @@ MonoBehaviour:
   m_MinSize: {x: 911, y: 342}
   m_MaxSize: {x: 22006, y: 10021}
   vertical: 0
-  controlID: 95
+  controlID: 34
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 342}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 15
+  controlID: 147
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -394,9 +394,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 26fbffff6afbffff
+      m_SelectedIDs: b6370000
+      m_LastClickedID: 14262
+      m_ExpandedIDs: d4f9ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -459,20 +459,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/LeanClass/AP1/LV11/Models/materials ogre/Texture/Weapon
+    - Assets/LeanClass/AP1/LV11/Shader/O
   m_ViewMode: 1
   m_StartGridSize: 80
   m_LastFolders:
-  - Assets/LeanClass/AP1/LV11/Models/materials ogre/Texture/Weapon
+  - Assets/LeanClass/AP1/LV11/Shader/O
   m_LastFoldersGridSize: 80
-  m_LastProjectPath: "D:\\\u5B66\u4E60\\unity\\unity_TA_Learn\\LearnOne"
+  m_LastProjectPath: D:\gitdemo\LearnShader\LearnShader\LearnOne
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: da390000
-    m_LastClickedID: 14810
-    m_ExpandedIDs: 00000000de3700007a3900007c3900007e390000803900008439000086390000883900008a3900008c3900008e39000090390000923900009439000096390000a2390000a4390000a6390000a8390000dc390000
+    m_SelectedIDs: 323d0000
+    m_LastClickedID: 15666
+    m_ExpandedIDs: 0000000042380000d2390000d4390000d6390000d8390000da390000dc390000de390000e0390000e2390000e4390000e6390000e8390000ea390000ec390000ee390000f0390000f2390000f4390000f63900001a3a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -500,7 +500,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: fa430000
     m_LastClickedID: 17402
-    m_ExpandedIDs: 00000000de3700007a3900007c3900007e39000080390000823900008439000086390000883900008a3900008c3900008e39000090390000923900009439000096390000983900009a3900009c3900009e390000a0390000a2390000a4390000a6390000a8390000
+    m_ExpandedIDs: 0000000042380000d2390000d4390000d6390000d8390000da390000dc390000de390000e0390000e2390000e4390000e6390000e8390000ea390000ec390000ee390000f0390000f2390000f4390000f6390000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -684,9 +684,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.51843, y: -1.0253954, z: -2.6499033}
+    m_Target: {x: -0.12886786, y: 1.0884681, z: 0.108040586}
     speed: 2
-    m_Value: {x: -2.51843, y: -1.0253954, z: -2.6499033}
+    m_Value: {x: -0.12886786, y: 1.0884681, z: 0.108040586}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -699,7 +699,7 @@ MonoBehaviour:
   m_SceneViewState:
     showFog: 1
     showMaterialUpdate: 0
-    showSkybox: 1
+    showSkybox: 0
     showFlares: 1
     showImageEffects: 1
     showParticleSystems: 1
@@ -732,13 +732,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.46
   m_Rotation:
-    m_Target: {x: 0.07510705, y: -0.9205725, z: 0.22060475, w: 0.31346425}
+    m_Target: {x: 0.07595242, y: -0.9149505, z: 0.20479646, w: 0.3393799}
     speed: 2
-    m_Value: {x: 0.07430709, y: -0.92136204, z: 0.21933305, w: 0.31219158}
+    m_Value: {x: 0.07268942, y: -0.91974556, z: 0.20442133, w: 0.3271031}
   m_Size:
-    m_Target: 3.1653345
+    m_Target: 1.1784987
     speed: 2
-    m_Value: 3.4653344
+    m_Value: 0.87849873
   m_Ortho:
     m_Target: 0
     speed: 2
